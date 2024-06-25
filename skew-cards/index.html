@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skew Cards</title>
+    <style>
+      :root {
+        --color-primary: #ab79d6;
+        --color-on-primary: #351d4a;
+        --color-secondary: #d367c1;
+        --color-background: #27272c;
+        --color-on-background: #c5c5ce;
+        --color-background-alt: #1e1c22;
+        --color-background-alt-alpha: #1e1c22bf;
+        --color-inverse: #fff;
+        --color-gray: #8e8e8e;
+        --color-yellow: #dedf40;
+        --color-green: #62cb5c;
+        --color-blue: #00bbcb;
+        --color-on-blue: #004a09;
+        --gradient: var(--color-secondary) 10%, var(--color-yellow) 25%,
+          var(--color-green) 50%, var(--color-blue) 75%,
+          var(--color-primary) 90%;
+        --brand-font: "Kanit", serif;
+        --brand-font-weight: 800;
+        --brand-font-alt: "Baloo 2", system-ui, sans-serif;
+        --brand-font-alt-weight: normal;
+        --brand-font-alt-weight-bold: 500;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: var(--color-background);
+      }
+
+      .container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+      }
+
+      :where(ul, ol):where([role="list"]) {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .section {
+        margin-bottom: var(--section-margin, 8vh);
+        margin-top: var(--section-margin, 8vh);
+        padding-bottom: var(--section-padding, 4vh);
+        padding-top: var(--section-padding, 4vh);
+      }
+
+      .column-container {
+        --gap: 2rem;
+        display: grid;
+        gap: var(--gap);
+
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 50ch), 1fr));
+      }
+
+      .card {
+        --skew: -5deg;
+        display: flex;
+        flex-direction: column;
+        padding: 4.5rem 2rem;
+        position: relative;
+      }
+
+      .card::before {
+        position: absolute;
+        content: "";
+        top: -1px;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        transform: skewY(var(--skew));
+        z-index: -1;
+
+        background-image: linear-gradient(35deg, var(--gradient));
+        border-radius: 0.25rem;
+        height: calc(100% + 1px);
+        transition: transform 0.24s ease-in;
+      }
+      .card:hover::before {
+        transform: skewY(var(--skew)) scale(1.03);
+      }
+      .card:after {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        transform: skewY(var(--skew));
+        z-index: -1;
+        background-image: linear-gradient(
+          to bottom,
+          var(--color-background-alt-alpha),
+          var(--color-background-alt) 0.75rem
+        );
+      }
+
+      .card__content {
+        --gap: 1rem;
+        display: grid;
+        gap: var(--gap);
+        justify-items: center;
+      }
+
+      .card__content:before {
+        content: attr(data-item);
+        font-family: var(--brand-font-alt);
+        font-size: 2rem;
+        opacity: 0.65;
+        position: absolute;
+        right: 1rem;
+        top: 0;
+        color: #fff;
+      }
+
+      a.card__title:not([class*="color"]) {
+        color: var(--color-primary);
+      }
+      a.card__title {
+        font-size: 1.35rem;
+        line-height: 1.15;
+        text-decoration: none;
+      }
+
+      .card__content p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section class="section">
+        <ul role="list" class="column-container">
+          <li class="card">
+            <div class="card__content" data-item="1">
+              <a href="" class="card__title"
+                ><span
+                  >Generating `font-size` CSS Rules and Creating a Fluid Type
+                  Scale</span
+                ></a
+              >
+              <p>
+                Let's take the mystery out of sizing type. Learn recommended
+                units for `font-size`, how to generate ratio-based fluid sizes
+                with Sass, and how to handle overflow.
+              </p>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__content" data-item="2">
+              <a href="" class="card__title"
+                ><span
+                  >Generating `font-size` CSS Rules and Creating a Fluid Type
+                  Scale</span
+                ></a
+              >
+              <p>
+                Let's take the mystery out of sizing type. Learn recommended
+                units for `font-size`, how to generate ratio-based fluid sizes
+                with Sass, and how to handle overflow.
+              </p>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__content" data-item="3">
+              <a href="" class="card__title"
+                ><span
+                  >Generating `font-size` CSS Rules and Creating a Fluid Type
+                  Scale</span
+                ></a
+              >
+              <p>
+                Let's take the mystery out of sizing type. Learn recommended
+                units for `font-size`, how to generate ratio-based fluid sizes
+                with Sass, and how to handle overflow.
+              </p>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__content" data-item="4">
+              <a href="" class="card__title"
+                ><span
+                  >Generating `font-size` CSS Rules and Creating a Fluid Type
+                  Scale</span
+                ></a
+              >
+              <p>
+                Let's take the mystery out of sizing type. Learn recommended
+                units for `font-size`, how to generate ratio-based fluid sizes
+                with Sass, and how to handle overflow.
+              </p>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__content" data-item="5">
+              <a href="" class="card__title"
+                ><span
+                  >Generating `font-size` CSS Rules and Creating a Fluid Type
+                  Scale</span
+                ></a
+              >
+              <p>
+                Let's take the mystery out of sizing type. Learn recommended
+                units for `font-size`, how to generate ratio-based fluid sizes
+                with Sass, and how to handle overflow.
+              </p>
+            </div>
+          </li>
+          <li class="card">
+            <div class="card__content" data-item="6">
+              <a href="" class="card__title"
+                ><span
+                  >Generating `font-size` CSS Rules and Creating a Fluid Type
+                  Scale</span
+                ></a
+              >
+              <p>
+                Let's take the mystery out of sizing type. Learn recommended
+                units for `font-size`, how to generate ratio-based fluid sizes
+                with Sass, and how to handle overflow.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>

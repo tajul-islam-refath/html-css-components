@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown-navigation-menu</title>
+
+    <style>
+      :root {
+        --bg-color: #000;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-size: 1.6rem;
+      }
+      .dropdown__title {
+        border: none;
+        background: transparent;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .nav {
+        background-color: var(--bg-color);
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0;
+
+        .nav__menu {
+          display: flex;
+        }
+
+        .nav__item {
+          margin: 0 1.2rem;
+          cursor: pointer;
+        }
+
+        .nav__link {
+          text-decoration: none;
+          font-size: 2.4rem;
+          color: #fff;
+        }
+      }
+
+      .dropdown {
+        position: relative;
+
+        .dropdown__menu {
+          list-style: none;
+          position: absolute;
+          top: calc(100% + 1rem);
+          background-color: #fff;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          padding: 1rem 0;
+          min-width: 25rem;
+
+          transform: rotateX(-90deg);
+          transform-origin: top center;
+          opacity: 0.3;
+          overflow: hidden;
+
+          transition: 286ms all 120ms ease-out;
+        }
+        .dropdown__item {
+          margin: 0.8rem 0;
+        }
+        .dropdown__link {
+          text-decoration: none;
+          font-size: 2.4rem;
+          color: #000;
+          display: block;
+          padding: 0.6rem;
+          &:hover {
+            background-color: #ccc;
+          }
+        }
+
+        &:hover,
+        &:focus-within {
+          .dropdown__menu {
+            transform: rotateX(0deg);
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav aria-label="Main Navigation" class="nav">
+      <ul class="nav__menu">
+        <li class="nav__item">
+          <a class="nav__link" href="#">Home</a>
+        </li>
+        <li class="nav__item dropdown">
+          <!-- aria-expanded needs managed with Javascript -->
+          <button
+            type="button"
+            class="dropdown__title nav__link"
+            aria-expanded="false"
+            aria-controls="sweets-dropdown"
+          >
+            Sweets
+          </button>
+          <ul class="dropdown__menu" id="sweets-dropdown">
+            <li class="dropdown__item">
+              <a class="dropdown__link" href="#">Donuts</a>
+            </li>
+            <li class="dropdown__item">
+              <a class="dropdown__link" href="#">Cupcakes</a>
+            </li>
+            <li class="dropdown__item">
+              <a class="dropdown__link" href="#">Chocolate</a>
+            </li>
+            <li class="dropdown__item">
+              <a class="dropdown__link" href="#">Bonbons</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="#">About</a>
+        </li>
+        <li class="nav__item dropdown">
+          <!-- aria-expanded needs managed with Javascript -->
+          <button
+            type="button"
+            class="dropdown__title nav__link"
+            aria-expanded="false"
+            aria-controls="tools-dropdown"
+          >
+            Tools
+          </button>
+          <ul class="dropdown__menu" id="tools-dropdown">
+            <li class="dropdown__item">
+              <a class="dropdown__link" href="#">Image Generation</a>
+            </li>
+            <li class="dropdown__item">
+              <a class="dropdown__link" href="#">Audio Generation</a>
+            </li>
+            <li class="dropdown__item">
+              <a class="dropdown__link" href="#">Video Generation</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </body>
+</html>
